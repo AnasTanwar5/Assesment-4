@@ -1,7 +1,3 @@
-//New Onboarding 2
-
-
-
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -9,19 +5,18 @@ const DietScreen = () => {
   return (
     <TouchableOpacity style={{ flex: 1 }} onPress={() => {}} activeOpacity={0.9}>
       <ImageBackground
-        source={{ uri: 'https://i.ibb.co/FqY8Ky7k/food-1898194-1280-1.png' }} // Updated Image
+        source={{ uri: 'https://i.ibb.co/7ts8HStj/woman-7539138-640-1.png' }} // Updated Image
         style={styles.background}
         resizeMode="cover" // Fix Stretching Issue
       >
         <View style={styles.overlay}>
           <View style={styles.textContainer}>
             <Text style={styles.title}>
-              <Text style={styles.whiteText}>YOUR </Text>
-              <Text style={styles.highlight}>DIET</Text>
+              <Text style={styles.whiteText}>PERSONALIZED </Text>
             </Text>
             <Text style={styles.title}>
-              <Text style={styles.whiteText}>YOUR </Text>
-              <Text style={styles.highlight}>RESULTS</Text>
+              <Text style={styles.orangeText}>FITNESS </Text>
+              <Text style={styles.whiteText}>PLANS</Text>
             </Text>
           </View>
         </View>
@@ -44,43 +39,32 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   textContainer: {
-    backgroundColor: '#EEAB7C',
-    paddingVertical: 10,
-    paddingHorizontal: 40,
+    backgroundColor: '#EEAB7C', // Set background color as per the provided image
+    paddingVertical: 44,
+    paddingHorizontal: 50,
     borderRadius: 26,
     alignItems: 'center',
-    width: 429, // Adjust width to fit better
-    height:175,
-    borderBottomRightRadius: 40, 
+    width: '106%',
+    borderEndEndRadius:40,
+
   },
   title: {
-    fontSize: 34,
+    fontSize: 40,
     fontFamily: 'Bungee-Regular', // Ensure font is correctly linked
-   // fontWeight: 'bold',
     textTransform: 'uppercase',
-    lineHeight: 75,
-   
+    lineHeight: 50,
+    
+    
+  },
+  orangeText: {
+    color: '#B24A02', // Dark bold text for "RESULTS"
+    textShadowColor: 'white', // White border color
+    textShadowOffset: { width: 2, height: 2 }, // Border thickness
+    textShadowRadius: 2, // Border blur effect
   },
   whiteText: {
     color: 'white',
-    //fontWeight: 'bold',
   },
-  // greyText: {
-  //   color: '#B24A02', // Grey color for "DIET"
-  //   //fontWeight: 'bold',
-  // },
-  highlight: {
-    color: '#B24A02',
-    textShadowColor: 'white', // White border
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 2,
-    //marginTop:3,
-  },
-
-  // orangeText: {
-  //   color: '#B24A02', // Dark bold text for "RESULTS"
-  //   //fontWeight: 'bold',
-  // },
 });
 
 export default DietScreen;
