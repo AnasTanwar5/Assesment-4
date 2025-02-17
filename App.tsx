@@ -1,67 +1,64 @@
-//assessment 3
-
-
-
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
-const ActivityLevelScreen = () => {
-  const [selected, setSelected] = useState<string | null>(null);
+const GoalsScreen = () => {
+  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
 
-  const options = ['Beginner', 'Intermediate', 'Advance'];
+  const goals = [
+    { id: 'lose', icon: 'https://i.postimg.cc/y86m0Gm3/Weight.png', text: 'I wanna lose weight.' },
+    { id: 'gain', icon: 'https://i.postimg.cc/cJg8mGrC/Barbell.png', text: 'I want to gain weight.' },
+    { id: 'diet', icon: 'https://i.postimg.cc/CK3nrrqN/Healthy-Food-Calories-Calculator.png', text: 'I want to change my diet.' },
+  ];
 
   return (
     <View style={styles.container}>
-      {/* Header Section */}
+      {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.goBackButton} onPress={() => console.log('Go Back pressed')}>
-          <Image source={{ uri: 'https://i.ibb.co/Jj2dyfGD/image-removebg-preview.png' }} style={styles.goBackIcon} />
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => console.log('Go back pressed')} // Placeholder for navigation
+        >
+          <Image source={{ uri: 'https://i.postimg.cc/h4rhVtpM/Go-Back.png' }} style={styles.backIcon} />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Assessment</Text>
-        <View style={styles.stepBox}>
-          <Text style={styles.stepText}>3 of 4</Text>
+        <Text style={styles.headerTitle}>Assessment</Text>
+        <View style={styles.pageIndicator}>
+          <Text style={styles.pageIndicatorText}>4 of 4</Text>
         </View>
       </View>
 
-      {/* Title Section */}
-      <View style={styles.titleSection}>
-        <Text style={styles.title}>What is your Physical Activity Level?</Text>
-        <Text style={styles.subtitle}>
-          Tell us about your daily activity level to personalize your fitness and health plan.
+      {/* Main Content */}
+      <View style={styles.content}>
+        <Text style={styles.title}>
+          What brings you{"\n"}to Arthlete?
         </Text>
-      </View>
 
-      {/* Options Section */}
-      <View style={styles.optionsContainer}>
-        {options.map((option) => (
-          <TouchableOpacity
-            key={option}
-            style={[
-              styles.optionButton,
-              selected === option && styles.selectedOptionButton,
-            ]}
-            onPress={() => setSelected(option)}
-          >
-            <Text
-              style={[
-                styles.optionText,
-                selected === option && styles.selectedOptionText,
-              ]}
+        {/* Goals Selection */}
+        <View style={styles.goalsContainer}>
+          {goals.map((goal) => (
+            <TouchableOpacity
+              key={goal.id}
+              style={[styles.goalButton, selectedGoal === goal.id && styles.selectedGoal]}
+              onPress={() => setSelectedGoal(goal.id)} // Set the selected goal
             >
-              {option}
-            </Text>
-          </TouchableOpacity>
-        ))}
+              <View style={styles.goalContent}>
+                <Image source={{ uri: goal.icon }} style={styles.icon} /> {/* Display image for each goal */}
+                <Text style={styles.goalText}>{goal.text}</Text>
+              </View>
+              <View style={styles.checkboxContainer}>
+                {selectedGoal === goal.id && (
+                  <Image source={{ uri: 'https://i.ibb.co/1f9vByRq/Vector.png' }} style={styles.checkboxIcon} />
+                )}
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
 
       {/* Continue Button */}
-      <TouchableOpacity style={styles.continueButton}>
+      <TouchableOpacity 
+        style={styles.continueButton}
+        onPress={() => console.log('Selected goal:', selectedGoal)} // Log the selected goal
+      >
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
     </View>
@@ -71,111 +68,112 @@ const ActivityLevelScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF', // White background
-    padding: 20,
-    justifyContent: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingTop: 40,
   },
   header: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-    right: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    justifyContent: 'flex-start', // Align to the left
+    marginBottom: 40,
   },
-  goBackButton: {
-    marginRight: 10,
+  backButton: {
+    padding: 5,
   },
-  goBackIcon: {
-    width: 40,
-    height: 40,
+  backIcon: {
+    width: 50,
+    height: 50,
   },
-  headerText: {
+  headerTitle: {
     fontFamily:'Inter_28pt-ExtraBold',
-    fontSize: 25,
+    fontSize: 28,
     //fontWeight: '900',
     flex: 1,
-    paddingLeft:10,
-    //textAlign: 'center',
   },
-  stepBox: {
-    backgroundColor: '#E06714',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 20, // Step box corner radius
+  pageIndicator: {
+    backgroundColor: '#FF6B00',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 15,
+    marginLeft: 'auto', // Align to the right
   },
-  stepText: {
-    fontSize: 16,
-    color: '#FFF',
-    fontWeight: '600',
+  pageIndicatorText: {
+    color: 'white',
+    fontSize: 14,
   },
-  titleSection: {
-    //marginTop: 100,
-    marginBottom: 30,
-    alignItems: 'center',
+  content: {
+    flex: 1, // This allows the content to take available space
+    justifyContent: 'center', // Centers content vertically
   },
   title: {
     fontFamily:'Inter_28pt-ExtraBold',
-    fontSize: 36,
+    fontSize: 40,
     //fontWeight: 'bold',
     textAlign: 'center',
-    color: '#000000',
-    marginBottom: 10,
+    marginBottom: 100,
+    lineHeight: 45,
   },
-  subtitle: {
-    fontFamily:'Inter_28pt-ExtraBold',
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-    lineHeight: 22,
+  goalsContainer: {
+    gap: 16,
   },
-  optionsContainer: {
-    marginTop: 30,
+  goalButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#D9D9D9',
+    padding: 15,
+    borderRadius: 12,
+  },
+  selectedGoal: {
+    backgroundColor: '#F0F0F0',
+  },
+  goalContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  goalText: {
+    fontFamily:'Righteous-Regular',
+    //fontWeight:'bold',
+    fontSize: 20,
+    color: '#333',
+  },
+  icon: {
+    width: 30,
+    height: 30,
+  },
+  checkboxContainer: {
+    width: 24,
+    height: 24,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: '#000000',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  optionButton: {
-    width: '80%',
-    backgroundColor: '#F6E1D3',
-    borderRadius: 30, // Option buttons corner radius
-    paddingVertical: 20,
-    alignItems: 'center',
-    marginBottom: 20,
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.1,
-    // shadowRadius: 2,
-    //elevation: 3,
-  },
-  selectedOptionButton: {
-     backgroundColor: '#E06714',
-    // shadowColor: '#E06714',
-    // shadowOpacity: 0.3,
-    //elevation: 5,
-  },
-  optionText: {
-    fontFamily:'Righteous-Regular',
-    fontSize: 18,
-    color: '#E06714',
-    //fontWeight: 'bold',
-  },
-  selectedOptionText: {
-    color: '#FFF', // White text for selected options
+  checkboxIcon: {
+    width: 16,
+    height: 16,
+    resizeMode: 'contain',
   },
   continueButton: {
-    marginTop: 65,
-    backgroundColor: '#000',
-    paddingVertical: 15,
-    borderRadius: 30, // Continue button corner radius
+    backgroundColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
+    borderRadius: 30,
+    marginBottom: 130,
+    gap: 8,
   },
   continueButtonText: {
     fontFamily:'Righteous-Regular',
     color: 'white',
     fontSize: 20,
     //fontWeight: '900',
+
   },
 });
 
-export default ActivityLevelScreen;
+export default GoalsScreen;
