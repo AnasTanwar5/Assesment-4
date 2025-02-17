@@ -1,5 +1,4 @@
-//assessment 2
-
+//assessment 3
 
 
 
@@ -12,69 +11,50 @@ import {
   Image,
 } from 'react-native';
 
-const DietPreferenceScreen = () => {
-  const [selected, setSelected] = useState<number | null>(null);
+const ActivityLevelScreen = () => {
+  const [selected, setSelected] = useState<string | null>(null);
 
-  const options = [
-    { id: 1, title: 'Vegitarian', description: 'Veggies, fruits, etc..', icon: '🥝' },
-    { id: 2, title: 'Vegan', description: 'Plant based diet', icon: '🌻' },
-    { id: 3, title: 'Keto', description: 'Chicken, etc', icon: '🍗' },
-    { id: 4, title: 'Gluten-free', description: 'Rice, quinoa, etc..', icon: '🍚' },
-  ];
+  const options = ['Beginner', 'Intermediate', 'Advance'];
 
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.goBackButton} onPress={() => console.log('Go Back pressed')}>
-          <Image source={{ uri: 'https://i.postimg.cc/h4rhVtpM/Go-Back.png' }} style={styles.goBackIcon} />
+          <Image source={{ uri: 'https://i.ibb.co/Jj2dyfGD/image-removebg-preview.png' }} style={styles.goBackIcon} />
         </TouchableOpacity>
         <Text style={styles.headerText}>Assessment</Text>
         <View style={styles.stepBox}>
-          <Text style={styles.stepText}>2 of 4</Text>
+          <Text style={styles.stepText}>3 of 4</Text>
         </View>
       </View>
 
       {/* Title Section */}
       <View style={styles.titleSection}>
-        <Text style={styles.title}>Any Specific </Text>
-        <Text style={styles.title}>Diet Preference?</Text>
+        <Text style={styles.title}>What is your Physical Activity Level?</Text>
+        <Text style={styles.subtitle}>
+          Tell us about your daily activity level to personalize your fitness and health plan.
+        </Text>
       </View>
 
       {/* Options Section */}
       <View style={styles.optionsContainer}>
         {options.map((option) => (
           <TouchableOpacity
-            key={option.id}
+            key={option}
             style={[
-              styles.optionBox,
-              selected === option.id && styles.selectedOptionBox,
+              styles.optionButton,
+              selected === option && styles.selectedOptionButton,
             ]}
-            onPress={() => setSelected(option.id)}
+            onPress={() => setSelected(option)}
           >
             <Text
               style={[
-                styles.optionIcon,
-                selected === option.id && styles.selectedOptionText,
+                styles.optionText,
+                selected === option && styles.selectedOptionText,
               ]}
             >
-              {option.icon}
-            </Text>
-            <Text
-              style={[
-                styles.optionTitle,
-                selected === option.id && styles.selectedOptionText,
-              ]}
-            >
-              {option.title}
-            </Text>
-            <Text
-              style={[
-                styles.optionDescription,
-                selected === option.id && styles.selectedOptionText,
-              ]}
-            >
-              {option.description}
+              {option}
             </Text>
           </TouchableOpacity>
         ))}
@@ -91,7 +71,7 @@ const DietPreferenceScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#FFFFFF', // White background
     padding: 20,
     justifyContent: 'center',
   },
@@ -108,21 +88,22 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   goBackIcon: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
   },
   headerText: {
     fontFamily:'Inter_28pt-ExtraBold',
-    fontSize: 28,
+    fontSize: 25,
     //fontWeight: '900',
-    flex: 1, 
+    flex: 1,
+    paddingLeft:10,
     //textAlign: 'center',
   },
   stepBox: {
     backgroundColor: '#E06714',
     paddingHorizontal: 10,
     paddingVertical: 5,
-    borderRadius: 20,
+    borderRadius: 20, // Step box corner radius
   },
   stepText: {
     fontSize: 16,
@@ -130,69 +111,63 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   titleSection: {
-    //marginTop: 5,
+    //marginTop: 100,
     marginBottom: 30,
     alignItems: 'center',
   },
   title: {
     fontFamily:'Inter_28pt-ExtraBold',
-    fontSize: 35,
+    fontSize: 36,
     //fontWeight: 'bold',
     textAlign: 'center',
     color: '#000000',
-  },
-  optionsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 15,
-  },
-  optionBox: {
-    width: '45%',
-    backgroundColor: '#E0E0E0',
-    borderRadius: 20,
-    padding: 20,
-    alignItems: 'center',
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 3 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 3,
-    // elevation: 5,
-    marginBottom: 15,
-  },
-  selectedOptionBox: {
-    backgroundColor: '#E06714',
-    // shadowColor: '#E06714',
-    // shadowOpacity: 0.4,
-    // elevation: 10,
-  },
-  optionIcon: {
-    fontSize: 30,
     marginBottom: 10,
-    color: '#000',
   },
-  optionTitle: {
-    fontFamily:'Righteous-Regular',
-    fontSize: 23,
-    //fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 5,
-  },
-  optionDescription: 
-  {
-    fontSize: 14,
+  subtitle: {
+    fontFamily:'Inter_28pt-ExtraBold',
+    fontSize: 16,
     color: '#666',
     textAlign: 'center',
+    lineHeight: 22,
+  },
+  optionsContainer: {
+    marginTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  optionButton: {
+    width: '80%',
+    backgroundColor: '#F6E1D3',
+    borderRadius: 30, // Option buttons corner radius
+    paddingVertical: 20,
+    alignItems: 'center',
+    marginBottom: 20,
+    // shadowColor: '#000',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.1,
+    // shadowRadius: 2,
+    //elevation: 3,
+  },
+  selectedOptionButton: {
+     backgroundColor: '#E06714',
+    // shadowColor: '#E06714',
+    // shadowOpacity: 0.3,
+    //elevation: 5,
+  },
+  optionText: {
+    fontFamily:'Righteous-Regular',
+    fontSize: 18,
+    color: '#E06714',
+    //fontWeight: 'bold',
   },
   selectedOptionText: {
-    color: '#FFF', // Changes font color to white for selected options
+    color: '#FFF', // White text for selected options
   },
   continueButton: {
     marginTop: 65,
-    
     backgroundColor: '#000',
     paddingVertical: 15,
-    borderRadius: 30,
+    borderRadius: 30, // Continue button corner radius
     alignItems: 'center',
   },
   continueButtonText: {
@@ -203,4 +178,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DietPreferenceScreen;
+export default ActivityLevelScreen;
